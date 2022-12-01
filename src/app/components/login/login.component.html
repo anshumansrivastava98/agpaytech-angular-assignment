@@ -1,0 +1,88 @@
+<div class="login-container">
+  <div class="login-wrapper">
+    <img style="width: 24%" src="assets/images/AGPT-logo.jpg" />
+    <div class="login-body">
+      <mat-label class="login-title">Welcome Back</mat-label>
+      <mat-label class="login-subtitle"
+        >Welcome back to Agpaytech! Please enter your details.
+      </mat-label>
+
+      <form [formGroup]="loginForm">
+        <div class="input-div">
+          <div style="margin-bottom: 20px">
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                type="email"
+                placeholder="Enter Email"
+                maxlength="50"
+                formControlName="email"
+              />
+              <mat-error
+                *ngIf="
+                  loginFormControl.email.touched &&
+                  loginFormControl.email.errors?.pattern
+                "
+              >
+                Please enter a <strong>valid email</strong> address
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  loginFormControl.email.touched &&
+                  loginFormControl.email.errors?.required
+                "
+              >
+                Email is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div style="margin-bottom: 10px">
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                type="password"
+                placeholder="Enter Password"
+                maxlength="50"
+                formControlName="password"
+              />
+              <mat-error
+                *ngIf="
+                  loginFormControl.password.touched &&
+                  loginFormControl.password.errors?.required
+                "
+              >
+                Password is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="checkbox-div">
+          <mat-checkbox>Remember for 30 days</mat-checkbox>
+          <a style="font-weight: 600; text-decoration: underline">
+            Forgot Password
+          </a>
+        </div>
+
+        <div style="padding: 12px">
+          <button
+            class="login-btn"
+            mat-button
+            (click)="onLogInClick()"
+            [disabled]="!loginForm.valid"
+          >
+            Log In
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="right-side-part">
+    <img
+      src="assets/images/agpaytech1.jpg"
+      class="wid-80"
+      style="margin-bottom: 16px"
+    />
+    <img src="assets/images/agpaytech2.jpg" class="wid-80" />
+  </div>
+</div>

@@ -1,0 +1,69 @@
+<div class="dashboard-container">
+  <div class="page-header">Dashboard</div>
+  <div class="body">
+    <div class="stats-panel-wrapper">
+      <div class="header-section">
+        <mat-label>Stats List</mat-label>
+      </div>
+      <div class="stats-table">
+        <table mat-table [dataSource]="statsData">
+          <ng-container matColumnDef="label">
+            <th mat-header-cell *matHeaderCellDef>Label</th>
+            <td mat-cell *matCellDef="let element">{{ element.label }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="rate">
+            <th mat-header-cell *matHeaderCellDef>Rate</th>
+            <td mat-cell *matCellDef="let element">{{ element.Rate }}</td>
+          </ng-container>
+
+          <tr
+            mat-header-row
+            *matHeaderRowDef="displayedStatsColumns; sticky: true"
+          ></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedStatsColumns"></tr>
+        </table>
+      </div>
+    </div>
+    <div class="user-list-wrapper">
+      <div class="user-heading">
+        <mat-label class="header-section">User List</mat-label>
+        <mat-form-field appearance="outline">
+          <mat-label>Search</mat-label>
+          <input
+            matInput
+            (keyup)="applyFilter($event)"
+            placeholder="Enter Name Here"
+            #input
+          />
+        </mat-form-field>
+      </div>
+      <div class="user-table">
+        <table mat-table [dataSource]="userListData">
+          <ng-container matColumnDef="avatar">
+            <th mat-header-cell *matHeaderCellDef>&nbsp;</th>
+            <td mat-cell *matCellDef="let element; let i = index">
+              <img [src]="element.avatar" class="user-avatar" />
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let element; let i = index">
+              {{ element.name }}
+            </td>
+          </ng-container>
+
+          <tr
+            mat-header-row
+            *matHeaderRowDef="displayedUserListColumns; sticky: true"
+          ></tr>
+          <tr
+            mat-row
+            *matRowDef="let row; columns: displayedUserListColumns"
+          ></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

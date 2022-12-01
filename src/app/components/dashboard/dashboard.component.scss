@@ -1,0 +1,91 @@
+.dashboard-container {
+  overflow: hidden;
+  background-color: #848484;
+  height: 100vh;
+
+  .page-header {
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    color: white;
+    padding: 24px;
+    margin-bottom: 20px;
+    border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+    font-size: 26px;
+    font-weight: 500;
+  }
+
+  .body {
+    height: calc(100vh - 88px);
+    padding: 0 24px 24px 24px;
+  }
+
+  .stats-panel-wrapper {
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 12px;
+    height: calc(100% - 350px);
+    margin-bottom: 32px;
+    min-height: 170px;
+    max-height: 200px;
+    background-color: white;
+
+    .header-section {
+      font-size: 22px;
+      display: flex;
+      padding-left: 16px;
+      font-weight: 500;
+      border-bottom: 1px solid #cfd3df;
+      height: 40px;
+      align-items: center;
+    }
+
+    .stats-table {
+      overflow: auto;
+      height: calc(100% - 32px);
+    }
+  }
+
+  .user-list-wrapper {
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 12px;
+    height: calc(100vh - 390px);
+    min-height: 245px;
+    background-color: white;
+
+    .user-table {
+      overflow: auto;
+      height: calc(100% - 40px);
+    }
+  }
+
+  .user-avatar {
+    height: 24px;
+  }
+
+  .user-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 22px;
+    padding-left: 16px;
+    font-weight: 500;
+    border-bottom: 1px solid #cfd3df;
+
+    ::ng-deep {
+      .mat-mdc-form-field-subscript-wrapper {
+        display: none;
+      }
+
+      .mat-mdc-text-field-wrapper {
+        height: 48px;
+      }
+    }
+  }
+
+  ::ng-deep .mat-mdc-table .mdc-data-table__header-row {
+    height: 44px;
+  }
+}
