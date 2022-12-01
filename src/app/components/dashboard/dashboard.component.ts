@@ -7,21 +7,26 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-
-// export interface StatsList {
-//     label: string;
-//     rate: number;
-//   }
-
-//   export interface UserList {
-//     avatar: string;
-//     name: string;
-//   }
 export class DashboardComponent implements OnInit {
+  apiResponse = [
+    {
+      title: 'users',
+      status: '',
+      statusCode: '',
+      statusText: '',
+    },
+    {
+      title: 'transactionstats',
+      status: '',
+      statusCode: '',
+      statusText: '',
+    },
+  ];
+
   statsData: any;
   userListData: any;
 
-  apiBase = 'https://630369f20de3cd918b34e39e.mockapi.io/';
+  apiBase = 'https://630369f20de3cd918b34e9e.mockapi.io/';
 
   displayedStatsColumns = ['label', 'rate'];
   displayedUserListColumns = ['avatar', 'name'];
@@ -43,11 +48,25 @@ export class DashboardComponent implements OnInit {
       (response: any) => {
         if (title === 'transactionstats') {
           this.statsData = new MatTableDataSource(response);
+		  this.apiResponse[0].status = 'success';
         } else {
           this.userListData = new MatTableDataSource(response);
+		  this.apiResponse[1].status = 'success';
         }
       },
-      (error: any) => {}
+      (error: any) => {
+		if(title === 'transactionstats'){
+			this.apiResponse[0].status = 'error';
+			this.apiResponse[0].statusCode = error.status;
+			this.apiResponse[0].statusText = error.statusText;
+		}
+		else{
+			this.apiResponse[1].status = 'error';
+			this.apiResponse[1].statusCode = error.status;
+			this.apiResponse[1].statusText = error.statusText;
+		}
+        
+      }
     );
   }
 }
